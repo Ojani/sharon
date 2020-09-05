@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <div class="colorBg"></div>
+
+    <div class="btn" onclick="init(this)">click here</div>
+
+    <h1> <span>🎉🎊</span> Happy Birthday Sharon!!! <span>🎉🎊</span> </h1>
+
+    <p></p>
+
+    <style>
+
+        .btn {
+            font-size: 7vw;
+            margin-top: 30%;
+            margin-left: 50%;
+            transform: translateX(-50%);
+            transition: opacity .3s;
+            padding: .2em 1em;
+            border: 2px solid lightgrey;
+            box-shadow: inset 0 -.1em .3em rgba(0, 0, 0, .7);
+        }
+        
+        body {
+            margin: 0;
+            font-family: "Varela Round", Arial;
+            position: relative;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .colorBg {
+            background: linear-gradient(to bottom right, hotpink, orange, hotpink, red);
+            background-size: 500% 500%;
+            animation: moveBg 5s infinite alternate;
+            transition: opacity .5s;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 140%;
+            opacity: 0;
+            z-index: -1;
+        }
+
+        @keyframes moveBg {
+            0%{ background-position: 0 0; }
+
+            100%{ background-position: 100% 0%; }
+
+        }
+
+        h1 {
+            transform: scale(0);
+            transition: scale .3s;
+            transition-delay: 2s;
+            text-align: center;
+            color: white;
+            font-size: 6vw;
+        }
+
+        span {
+            animation: twist 1s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes twist {
+            0%{ transform: rotate(-45deg) }
+            50%{ transform: rotate(45deg) }
+            100%{ transform: rotate(-45deg) }
+        }
+
+        p {
+            font-size: 20px;
+            margin-left: 10px;
+            z-index: 100;
+            margin-top: 50px;
+            white-space: pre-wrap;
+        }
+
+    </style>
+
+    <script>
+
+        const txt = `Hey Sharon! I thought I'd make a little something unexpected :)\n\nSadly, for obvious reasons, we can't have activities or see people, or celebrate stuff, and so on.\n\nBut at least I thought I'd do what I can with what I know. :)\n\nI just wanted to say that you're a wonderful person and that you mean a lot to me even if we haven't talked much recently....\n\nI also wanted to add that youv'e been one of the peopel that has helped me be the best me (believe me)....\nSo thank you for that.\n\nAnd thank you for being so genuine!\n\nHopefully we can see each other soon 😊😊😊!!!\n\n\n~ Ojani 👌`;
+
+        const audio = new Audio();
+        audio.src = "http://audio.marsupialgurgle.com/audio/partyhorngood.mp3";
+
+        function init(e) {
+            e.style.opacity = 0;
+            document.querySelector(".colorBg").style.opacity = 1;
+            document.querySelector("h1").style.transform = "scale(1)";
+            audio.play();
+
+            setTimeout(() => {
+                addTxt();
+            }, 1000)
+        }
+
+        function addTxt(i=0) {
+            document.querySelector("p").innerHTML = document.querySelector("p").innerHTML + txt[i];
+            if(i < txt.length-1) {
+                setTimeout(() => {
+                    addTxt(i+1);
+                }, 100);
+            }
+        }
+        
+    </script>
+    
+</body>
+</html>
